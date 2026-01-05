@@ -1,3 +1,5 @@
+// this is the eslint config file for the project
+// it extends the recommended eslint rules from eslint-config-next
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";

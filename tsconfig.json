@@ -1,28 +1,33 @@
 {
+  // the whole point of this file is to configure typescript compiler options to mimic exactly how next.js compiles the code, 
+  // so that type checking works correctly
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "incremental": true,
+    "target": "ES2017", // what compatibility to compile to
+    "lib": ["dom", "dom.iterable", "esnext"], // what built-in APIs are available at runtime
+    "allowJs": true, // allow JavaScript files to be compiled
+    "skipLibCheck": true, // skip type checking of declaration files, so build is faster
+    "strict": true, // enable all strict type-checking options (eg. noImplicitAny, strictNullChecks)
+    "noEmit": true, // only type-check, do not emit output files, next js uses its own build pipeline
+    "esModuleInterop": true, // enable compatibility for importing commonjs modules
+    "module": "esnext", //keep es syntax for import/export, so next js can handle it
+    "moduleResolution": "bundler", //module resolution strategy that mimics 
+    // the behavior of bundlers like webpack
+    "resolveJsonModule": true, // allow importing json files as modules
+    "isolatedModules": true, // ensure each file can be safely transpiled without relying
+    //  on other files
+    "jsx": "react-jsx", // use the new jsx transform from react 17+
+    "incremental": true, // enable incremental compilation for faster subsequent builds
     "plugins": [
       {
-        "name": "next"
+        "name": "next" // next.js specific typescript plugin for better integration, 
+        // like auto type generation for next.js features
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"] // setup alias for imports starting with @ to point to the root directory
     }
   },
-  "include": [
+  "include": [ // files to be included in the type checking
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
@@ -30,5 +35,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"] // exclude node_modules from type checking
 }
